@@ -43,6 +43,17 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
 
+        <script type="text/javascript">
+            if (localStorage.theme === 'dark' ||
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ) {
+                document.documentElement.classList.add('dark')
+            }
+        </script>
+
+        <style>
+            html {transition: background-color 0.3s, color 0.3s;}
+        </style>
+
 
         @viteReactRefresh
 

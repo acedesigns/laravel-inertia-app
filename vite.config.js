@@ -24,7 +24,8 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            "@chakra-ui/react": resolve("..", "..", "packages/react/src"),
+            //"@chakra-ui/react": resolve("..", "..", "packages/react/src"),
+            '@': resolve(__dirname, 'resources/js'),
         },
     },
     server: {

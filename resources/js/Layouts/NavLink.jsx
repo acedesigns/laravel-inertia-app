@@ -16,11 +16,13 @@ const NavLink = ({ href, children }) => {
     return (
         <Link
             href={href}
-            className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+            className={`inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 transition-colors
+                ${
                 isActive
-                    ? 'text-gray-900 border-b-2 border-indigo-500'
-                    : 'text-gray-500 hover:text-gray-700'
-            }`}
+                    ? 'text-gray-900 dark:text-white border-indigo-500'
+                    : 'text-gray-500 dark:text-gray-300 border-transparent hover:text-gray-700 dark:hover:text-white'
+            }
+            `}
         >
             {children}
         </Link>

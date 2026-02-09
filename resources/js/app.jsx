@@ -9,8 +9,9 @@
 
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import DefaultLayout from './Layouts/AppLayout'
-import AppProvider from './context/AppProvider'
+import AuthLayout from '@/Layouts/AuthLayout'
+import DefaultLayout from '@/Layouts/AppLayout'
+import AppProvider from '@/context/AppProvider'
 import { createInertiaApp } from '@inertiajs/react'
 
 
@@ -18,9 +19,13 @@ createInertiaApp({
     defaults: {},
     resolve: name => {
         const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true })
-        //let page = pages[`./Pages/${name}.jsx`]
         let page = pages[`./Pages/${name}.jsx`]
-        page.default.layout = page.default.layout || (page => <DefaultLayout children={page} />)
+        //page.default.layout = page.default.layout || (page => <DefaultLayout children={page} />)
+        page.default.layout = page.default.layout || (pageEl => {
+            const { auth } = page.props || {}
+            if (auth?.user) { return <AuthLayout>{pageEl}</AuthLayout> }
+            return <DefaultLayout>{pageEl}</DefaultLayout>
+        })
         return page
     },
     setup({ el, App, props }) {
